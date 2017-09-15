@@ -3,11 +3,13 @@ import java.util.Random;
 class BSTNode<T> {
     T key;
     BSTNode<T> left, right, parent;
+    int nodes_in_left;
 
     BSTNode(T k, BSTNode<T> l, BSTNode<T> r) {
         key = k;
         left = l;
         right = r;
+       
     }
 
 }
@@ -31,10 +33,23 @@ public class BinarySearchTree<T extends Comparable<T>> {
         root = remove_helper(root, key);
     }
 
-    T kth_smallest(int k) throws java.lang.Exception {
-        // student implements
-        throw new java.lang.UnsupportedOperationException();
+    public static int kth_smallest(int k, BSTNode<Integer> node, int count)  {
+        
+    	if(node.left != null)
+    		kth_smallest(k, node.left, count);
+    	
+    	if(count-1 == k)
+    		return node.key;
+    	else 
+    		count += 1;
+    	if(node.right != null)
+    		kth_smallest(k, node.right, count);
+
+  
+    	
+    	return 0; 
     }
+    
 
     public void print_tree() { System.out.print(tree_to_string(root)); }
 
@@ -119,17 +134,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     
     public static void main(String[] args) {
     	
-    BinarySearchTree<Integer>	T = new BinarySearchTree();
-    
-    for(int i = 0; i < 15; i++) {
-    	
-    	T.insert(new Random().nextInt(20));
-    	
-    	//T.print_tree();
-    }
-    
-   
-    	
+ 	
     
     	
     }
